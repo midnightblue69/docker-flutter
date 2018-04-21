@@ -59,12 +59,22 @@ RUN echo 'Installing VsCode' && \
     curl -o vscode.deb -# -J -L "$VSCODE" && \ 
     dpkg -i vscode.deb && rm -f vscode.deb
 
+RUN chmod +x /opt/flutter/bin/cache/dart-sdk/bin
+RUN chmod 777 /opt/flutter/bin/cache/lockfile
+RUN chmod 666 /opt/flutter/version
+
 ENV DEVELOPER developer
+ENV HOME_DIR /home/${DEVELOPER}
 RUN useradd -ms /bin/bash ${DEVELOPER}
 USER ${DEVELOPER}
-WORKDIR /home/${DEVELOPER}
+WORKDIR ${HOME_DIR}
 
+ADD .bashrc .bashrc
+RUN cat /usr/lib/git-core/git-sh-prompt > .bash_git
+
+# code as superuser is not recommended 
 RUN code --install-extension Dart-Code.flutter
+
 
 
 
