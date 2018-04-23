@@ -1,4 +1,4 @@
-Contains:
+contains:
   * ubuntu 17.10
   * flutter
   * android-27
@@ -7,6 +7,7 @@ Contains:
   * german locales
 
 run it:
+
 ```sudo docker run --name yourapp -it --rm -e DISPLAY=$DISPLAY -h flutter -v /tmp/.X11-unix:/tmp/.X11-unix -v yourapp:/home/developer -v /etc/localtime:/etc/localtime:ro  -v /usr/share/icons:/usr/share/icons:ro -v /dev/kvm:/dev/kvm --privileged  lastjedi/flutter /bin/bash```
 
 check image:
