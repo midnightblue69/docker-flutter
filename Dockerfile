@@ -21,20 +21,18 @@ ENV PATH $PATH:$ANDROID_HOME/tools/bin
 RUN yes | sdkmanager --update --verbose
 RUN yes | sdkmanager "platform-tools"
 RUN yes | sdkmanager "build-tools;26.0.2" --verbose
-RUN yes | sdkmanager "platforms;android-25" --verbose
+RUN yes | sdkmanager "build-tools;27.0.3" --verbose
+RUN yes | sdkmanager "platforms;android-27" --verbose
 RUN yes | sdkmanager "extras;android;m2repository" --verbose
 RUN yes | sdkmanager "extras;google;m2repository" --verbose
 RUN yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2" --verbose
 RUN yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2" --verbose
-RUN yes | sdkmanager "system-images;android-25;google_apis;x86_64" --verbose
+RUN yes | sdkmanager "system-images;android-27;google_apis;x86" --verbose
 RUN yes | sdkmanager --licenses 
 
 # Create fake keymap file 
 RUN mkdir $ANDROID_HOME/tools/keymaps && \
     touch $ANDROID_HOME/tools/keymaps/de-de
-
-#Create AVD
-RUN echo no | avdmanager create avd --force -n nexus -k "system-images;android-25;google_apis;x86_64" --abi "google_apis/x86_64"
 
 RUN cd /opt && wget -q https://storage.googleapis.com/flutter_infra/releases/beta/linux/flutter_linux_v0.2.8-beta.tar.xz  --show-progress 
 RUN cd /opt && tar xf flutter_linux_v0.2.8-beta.tar.xz && rm flutter_linux_v0.2.8-beta.tar.xz
@@ -47,12 +45,10 @@ RUN apt-get clean && \
 ENV LANG de_DE.UTF-8 
 RUN locale-gen $LANG
 
-RUN flutter doctor -v
-
 ENV VSCODE=https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libnotify4 gnupg libxkbfile1 libgconf-2-4 libsecret-1-0 libgtk2.0-0 libx11-xcb-dev libxss-dev libasound2 libnss3 libxtst6 && \
+    apt-get install -y --no-install-recommends libnotify4 gnupg libxkbfile1 libgconf-2-4 libsecret-1-0 libgtk2.0-0 libx11-xcb-dev libxss-dev libasound2 libnss3 libxtst6 pulseaudio libgl1-mesa-glx qemu-kvm cpu-checker && \
     rm -rf /var/lib/apt/lists/*
 
 RUN echo 'Installing VsCode' && \ 
@@ -77,6 +73,8 @@ RUN cat /usr/lib/git-core/git-sh-prompt > .bash_git
 
 # code as superuser is not recommended 
 RUN code --install-extension Dart-Code.flutter
+
+RUN flutter doctor -v
 
 
 
