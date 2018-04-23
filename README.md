@@ -18,8 +18,8 @@ check image:
 * ```flutter create yourapp```
 * ```cd yourapp```
 * ```flutter run```
-* check hot relaod. start new command ```sudo docker exec -it yourapp bash``` 
+* check hot reload. start new command ```sudo docker exec -it yourapp bash``` 
 * start vscode```code```
 * open ```lib/main.dart```
-* change ```You have pushed the button this many times:``` to ```You have clicked the button this many times```
+* change ```You have pushed the button this many times:``` to ```You have clicked the button this many times``` and save file.
 * change to flutter-terminal and press r
