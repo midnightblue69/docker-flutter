@@ -60,6 +60,7 @@ RUN chmod 777 /opt/flutter/bin/cache/lockfile
 RUN chmod 666 /opt/flutter/version
 RUN chmod 777 /opt/flutter/bin/cache/dart-sdk/bin/snapshots
 RUN chmod 777 -R /opt/flutter/.pub-cache/hosted/pub.dartlang.org
+RUN chmod 777 -R /opt/flutter/.pub-cache/_temp
 #RUN chmod 666 /opt/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.0.0/pubspec.yaml
 
 ENV DEVELOPER developer
