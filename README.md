@@ -23,3 +23,9 @@ check image:
 * open ```lib/main.dart```
 * change ```You have pushed the button this many times:``` to ```You have clicked the button this many times``` and save file.
 * change to flutter-terminal and press r
+
+upgrade flutter as root
+```sudo docker exec -it --user root yourapp bash```
+
+```flutter upgrade```
+
