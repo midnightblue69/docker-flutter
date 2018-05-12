@@ -49,7 +49,7 @@ RUN locale-gen $LANG
 ENV VSCODE=https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libnotify4 gnupg libxkbfile1 libgconf-2-4 libsecret-1-0 libgtk2.0-0 libx11-xcb-dev libxss-dev libasound2 libnss3 libxtst6 pulseaudio libgl1-mesa-glx qemu-kvm cpu-checker && \
+    apt-get install -y --no-install-recommends libnotify4 gnupg libxkbfile1 libgconf-2-4 libsecret-1-0 libgtk2.0-0 libx11-xcb-dev libxss-dev libasound2 libnss3 libxtst6 pulseaudio libgl1-mesa-glx qemu-kvm cpu-checker android-tools-adb && \
     rm -rf /var/lib/apt/lists/*
 
 RUN echo 'Installing VsCode' && \ 
