@@ -34,8 +34,9 @@ RUN yes | sdkmanager --licenses
 RUN mkdir $ANDROID_HOME/tools/keymaps && \
     touch $ANDROID_HOME/tools/keymaps/de-de
 
-RUN cd /opt && wget -q https://storage.googleapis.com/flutter_infra/releases/beta/linux/flutter_linux_v0.2.8-beta.tar.xz  --show-progress 
-RUN cd /opt && tar xf flutter_linux_v0.2.8-beta.tar.xz && rm flutter_linux_v0.2.8-beta.tar.xz
+ENV FLUTTER_TAR flutter_linux_v0.3.1-beta.tar.xz
+RUN cd /opt && wget -q https://storage.googleapis.com/flutter_infra/releases/beta/linux/${FLUTTER_TAR}  --show-progress 
+RUN cd /opt && tar xf ${FLUTTER_TAR} && rm ${FLUTTER_TAR}
 ENV PATH=/opt/flutter/bin:$PATH 
 
 RUN apt-get clean && \
