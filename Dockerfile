@@ -56,17 +56,17 @@ RUN echo 'Installing VsCode' && \
     curl -o vscode.deb -# -J -L "$VSCODE" && \ 
     dpkg -i vscode.deb && rm -f vscode.deb
 
-RUN chmod 755 /opt/flutter/bin/cache/dart-sdk/bin
-RUN chmod 777 /opt/flutter/bin/cache/lockfile
-RUN chmod 666 /opt/flutter/version
-RUN chmod 777 /opt/flutter/bin/cache/dart-sdk/bin/snapshots
-RUN chmod 777 -R /opt/flutter/.pub-cache/hosted/pub.dartlang.org
-RUN chmod 777 -R /opt/flutter/.pub-cache/_temp
-#RUN chmod 666 /opt/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.0.0/pubspec.yaml
+RUN groupadd flutter
+RUN usermod -a -G flutter root
+
+RUN chown -R :flutter /opt/flutter
+RUN chmod -R g+xrw /opt/flutter
 
 ENV DEVELOPER developer
 ENV HOME_DIR /home/${DEVELOPER}
 RUN useradd -ms /bin/bash ${DEVELOPER}
+RUN usermod -a -G flutter developer
+RUN usermod -a -G plugdev developer
 USER ${DEVELOPER}
 WORKDIR ${HOME_DIR}
 
