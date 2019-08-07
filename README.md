@@ -8,7 +8,7 @@ contains:
 
 run it:
 
-```sudo docker run --name yourapp -it --rm -e DISPLAY=$DISPLAY -h flutter -v /tmp/.X11-unix:/tmp/.X11-unix -v yourapp:/home/developer -v /etc/localtime:/etc/localtime:ro  -v /usr/share/icons:/usr/share/icons:ro -v /dev/kvm:/dev/kvm --privileged  lastjedi/flutter /bin/bash```
+```sudo docker run --name yourapp -it --rm -e DISPLAY=$DISPLAY -h flutter -v /tmp/.X11-unix:/tmp/.X11-unix -v yourapp:/home/developer -v /etc/localtime:/etc/localtime:ro  -v /usr/share/icons:/usr/share/icons:ro -v /usr/share/fonts:/usr/share/fonts:ro -v /dev/kvm:/dev/kvm --privileged  lastjedi/flutter /bin/bash```
 
 check image:
 * create android image: ```avdmanager create avd --force -n nexus -k "system-images;android-27;google_apis;x86" --abi "google_apis/x86"```
